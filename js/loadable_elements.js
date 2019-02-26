@@ -33,14 +33,19 @@ homeObject = {
             title: {
                 label: 'Sales',
                 type: 'p',
-                parent_id: 'center-column'
+                parent_id: 'right-column'
             },
             add_sale: {
                 header: 'add_sale',
                 label: 'Add Sale',
                 type: 'button',
-                parent_id: 'center-column'
+                parent_id: 'right-column'
             }
         }
     }
-}
+};
+
+
+add_concert = {
+    
+};
