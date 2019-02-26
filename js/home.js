@@ -17,10 +17,12 @@ function initializeHome() {
     $('#body-wrapper').append(rightColumn);
 
     for (el1 in homeObject.columns) {
+
         for (el2 in homeObject.columns[el1]) {
+
             elValue = homeObject.columns[el1][el2];
 
-            let newElement = document.createElement(elValue['type']);
+            let newElement = document.createElement(elValue['tag']);
 
             newElement.innerHTML = elValue['label'];
             newElement.setAttribute('header', el2);
@@ -29,10 +31,11 @@ function initializeHome() {
     }
 
     $('button').on('click', function() {
-        console.log(this.getAttribute('header'));
+        initializeForm(elements[this.getAttribute('header')]);
     });
 
 
 
 }
+
 initializeHome();
