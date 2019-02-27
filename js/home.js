@@ -1,5 +1,7 @@
 function initializeHome() {
 
+    $('#body-wrapper').empty();
+
     let leftColumn = document.createElement('div');
     let centerColumn = document.createElement('div');
     let rightColumn = document.createElement('div');

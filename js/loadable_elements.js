@@ -56,6 +56,14 @@ let add_concert = {
         value: 'Add Concert',
         tag: 'p'
     },
+    submitButton: {
+        tag: 'button',
+        label: 'Submit'
+    },
+    backButton: {
+        tag: 'button',
+        label: 'Back'
+    },
     venue: {
         value: '',
         tag: 'input',
@@ -90,6 +98,14 @@ let add_merchandise = {
         value: 'Add Merchandise',
         tag: 'p'
     },
+    submitButton: {
+        tag: 'button',
+        label: 'Submit'
+    },
+    backButton: {
+        tag: 'button',
+        label: 'Back'
+    },
     item: {
         value: '',
         tag: 'input',
@@ -117,7 +133,19 @@ let add_merchandise = {
 };
 
 let add_sale = {
-    header: 'add_sale'
+    header: 'add_sale',
+    title: {
+        value: 'Add Sale',
+        tag: 'p'
+    },
+    submitButton: {
+        tag: 'button',
+        label: 'Submit'
+    },
+    backButton: {
+        tag: 'button',
+        label: 'Back'
+    }
 };
 
 let elements = {
@@ -126,3 +154,4 @@ let elements = {
     add_merchandise: add_merchandise,
     add_sale: add_sale
 };
+
