@@ -22,6 +22,7 @@ function initializeForm(element) {
           ? elValue["label"]
           : elValue["value"];
       }
+ 
 
       if (elValue.input_type) {
         newElement.setAttribute("type", elValue["input_type"]);
