@@ -40,10 +40,11 @@ def create_concert_table(db, cur):
     """
     with db:
         cur.execute('CREATE TABLE IF NOT EXISTS concerts ('
-                    'venue   TEXT   NOT NULL,'
-                    'city    TEXT   NOT NULL,'
-                    'state   TEXT   NOT NULL,'
-                    'date    DATE   NOT NULL'
+                    'rowid   INTEGER NOT NULL  PRIMARY KEY,'
+                    'venue   TEXT    NOT NULL,'
+                    'city    TEXT    NOT NULL,'
+                    'state   TEXT    NOT NULL,'
+                    'date    DATE    NOT NULL'
                     ');')
 
 @open_close_connection
@@ -53,6 +54,7 @@ def create_merchandise_table(db, cur):
     """
     with db:
         cur.execute('CREATE TABLE IF NOT EXISTS merchandise ('
+                    'rowid   INTEGER NOT NULL  PRIMARY KEY,'
                     'item    TEXT    NOT NULL,'
                     'price   REAL    NOT NULL,'
                     'tax     REAL    NOT NULL,'
@@ -105,14 +107,14 @@ def add_sales(db, cur, values):
     Adds a new row to sales if it doesn't yet exist, otherwise updates the row.
     """
     with db:
-        cur.execute('SELECT rowid '
+        cur.execute('SELECT rowid ' # Finds concerts foreign key
                     'FROM concerts '
                     'WHERE concerts.date = (?)',
                     [values['date']])
         r1 = cur.fetchone()
         concerts_row_id = r1['rowid']
 
-        cur.execute('SELECT rowid '
+        cur.execute('SELECT rowid ' # Finds merchandise foreign key
                     'FROM merchandise '
                     'WHERE merchandise.item = (?)',
                     [values['item']])
@@ -120,17 +122,17 @@ def add_sales(db, cur, values):
         merchandise_row_id = r2['rowid']
 
 
-        if select_sales_item_concert(values):
+        if select_sales_item_concert(values): # Updates row
             cur.execute('UPDATE sales '
                         'SET amount_sold = amount_sold + (?) '
                         'WHERE concerts_id = (?)'
                         '  AND merchandise_id = (?)',
                         (values['amount_sold'], concerts_row_id, merchandise_row_id))
-        else:
+        else: # Creates row
             cur.execute('INSERT INTO sales '
                         '  (concerts_id, merchandise_id, amount_sold) '
                         'VALUES '
-                        '(?, ?, ?)',
+                        '  (?, ?, ?)',
                         (concerts_row_id, merchandise_row_id, values['amount_sold']))
 
 
