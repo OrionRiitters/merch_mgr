@@ -48,5 +48,5 @@ function submitForm(clone) {
     } else delete clone[el];
   }
 
-  console.log(clone);
+    $.post('/submit', clone);
 }
