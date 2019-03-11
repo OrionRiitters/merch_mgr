@@ -1,4 +1,5 @@
 from flask import Flask, g, jsonify, request, send_from_directory, send_file
+from python.validation import *
 
 app = Flask(__name__)
 
@@ -17,4 +18,4 @@ def serve_css(file):
 
 @app.route('/submit', methods=['POST'])
 def serve_json():
-    return None
+    validate_json(request.form) 

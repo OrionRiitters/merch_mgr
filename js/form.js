@@ -42,11 +42,12 @@ function initializeForm(element) {
 }
 
 function submitForm(clone) {
-  for (el in clone) {
-    if (clone[el]["tag"] == "input") {
-      clone[el].value = document.getElementById(clone[el]["label"]).value;
-    } else delete clone[el];
-  }
+    for (el in clone) {
+        if (clone[el]["tag"] == "input") {
+            clone[el].value = document.getElementById(clone[el]["label"]).value;
+        } else if (el != 'header') {
+              delete clone[el];
+        }
 
     $.post('/submit', clone);
 }

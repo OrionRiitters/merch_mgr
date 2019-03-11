@@ -8,6 +8,10 @@ using sqlite3.
 
 MERCH_SALES = 'merch_sales.db'
 
+def select_db_operation(header):
+
+
+
 def open_close_connection(func):
     """
     A decorator to pull the opening and closing of connections outside of each function.
